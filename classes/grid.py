@@ -37,12 +37,16 @@ class Grid:
         
     
     def get_lowest_entropy(self):
+        if len(self.entropy) == 0:
+            return 0
         index = 0
         while index < len(self.entropy) and self.entropy[index][0] == 0:
             index += 1
         return self.entropy[index][0]
 
     def get_lowest_entropy_list(self):
+        if len(self.entropy) == 0:
+            return []
         ent = self.get_lowest_entropy()
         index = 0
         result = []
@@ -57,7 +61,7 @@ class Grid:
         lowest_entropy = self.get_lowest_entropy_list()
 
         if len(lowest_entropy) == 0:
-            return
+            return 0
         
         sprite_collapse = random.choice(lowest_entropy)
         sprite_collapse.collapse()
