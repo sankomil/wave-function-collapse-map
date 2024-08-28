@@ -26,14 +26,15 @@ SPRITE_ROUND=9
 SPRITE_CONE=10
 
 # Use a dict to store directions, already created keys on top
-# For each direction key, create another dict of tile and weight... might be getting too complicated?
+# For each direction key, create another dict of tile and weight
+# The total gives basically the weight of each sprite for placing initially
 tile_neighbours = {
     SPRITE_GRASS1: {
         NORTH: {SPRITE_GRASS1: 3, SPRITE_SAND1: 3, SPRITE_POINTY: 2, SPRITE_HUT: 1}, 
         SOUTH: {SPRITE_GRASS1: 3, SPRITE_SAND1: 3, SPRITE_POINTY: 2, SPRITE_HUT: 1},
         EAST: {SPRITE_GRASS2: 3, SPRITE_GRASS1: 2, SPRITE_SAND1: 3, SPRITE_WINDMILL: 1},
         WEST: {SPRITE_GRASS2: 3, SPRITE_GRASS1: 2, SPRITE_SAND1: 3, SPRITE_WINDMILL: 1},
-        "TOTAL": 74
+        "TOTAL": 34
     },
     SPRITE_GRASS2: {
         NORTH: {SPRITE_SAND1: 2, SPRITE_SHOP: 3, SPRITE_WINDMILL: 3},
