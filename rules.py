@@ -1,0 +1,122 @@
+# World size
+WIDTH=4
+HEIGHT=4
+
+# Sprites size
+SPRITE_SIZE=16
+SCALE=2
+
+# Directions
+NORTH=1
+SOUTH=-1
+EAST=2
+WEST=-2
+
+# Tile types
+SPRITE_GRASS1=0
+SPRITE_GRASS2=1
+SPRITE_SAND1=2
+SPRITE_SAND2=3
+SPRITE_WATER=4
+SPRITE_HUT=5
+SPRITE_SHOP=6
+SPRITE_WINDMILL=7
+SPRITE_POINTY=8
+SPRITE_ROUND=9
+SPRITE_CONE=10
+
+# Use a dict to store directions, already created keys on top
+# For each direction key, create another dict of tile and weight... might be getting too complicated?
+tile_neighbours = {
+    SPRITE_GRASS1: {
+        NORTH: {SPRITE_GRASS1: 3, SPRITE_SAND1: 3, SPRITE_POINTY: 2, SPRITE_HUT: 1}, 
+        SOUTH: {SPRITE_GRASS1: 3, SPRITE_SAND1: 3, SPRITE_POINTY: 2, SPRITE_HUT: 1},
+        EAST: {SPRITE_GRASS2: 3, SPRITE_GRASS1: 2, SPRITE_SAND1: 3, SPRITE_WINDMILL: 1},
+        WEST: {SPRITE_GRASS2: 3, SPRITE_GRASS1: 2, SPRITE_SAND1: 3, SPRITE_WINDMILL: 1},
+        "TOTAL": 74
+    },
+    SPRITE_GRASS2: {
+        NORTH: {SPRITE_SAND1: 2, SPRITE_SHOP: 3, SPRITE_WINDMILL: 3},
+        SOUTH: {SPRITE_SAND1: 2, SPRITE_POINTY: 4, SPRITE_WINDMILL: 1},
+        EAST: {SPRITE_GRASS1: 4, SPRITE_GRASS2: 2},
+        WEST: {SPRITE_GRASS2: 2, SPRITE_GRASS1: 2},
+        "TOTAL": 37
+    },
+    SPRITE_SAND1: {
+        NORTH: {SPRITE_GRASS1: 2, SPRITE_SAND1: 3, SPRITE_SAND2: 4, SPRITE_POINTY: 1},
+        SOUTH: {SPRITE_SAND2: 5, SPRITE_GRASS1: 2, SPRITE_SAND1: 2, SPRITE_GRASS2: 1},
+        EAST: {SPRITE_GRASS2: 3, SPRITE_SAND2: 4, SPRITE_GRASS1: 3, SPRITE_HUT: 1},
+        WEST: {SPRITE_GRASS2: 3, SPRITE_SAND2: 4, SPRITE_GRASS1: 3, SPRITE_HUT: 1},
+        "TOTAL": 44
+    },
+    SPRITE_SAND2: {
+        NORTH: {SPRITE_SAND1: 3, SPRITE_WATER: 5, SPRITE_SHOP: 2, SPRITE_WINDMILL: 1},
+        SOUTH: {SPRITE_SAND1: 3, SPRITE_WATER: 5, SPRITE_SHOP: 2, SPRITE_WINDMILL: 1},
+        EAST: {SPRITE_SAND1: 3, SPRITE_WATER: 5, SPRITE_SAND2: 4},
+        WEST: {SPRITE_SAND1: 3, SPRITE_SAND2: 3, SPRITE_WATER: 5},
+        "TOTAL": 40
+    },
+    SPRITE_WATER: {
+        NORTH: {SPRITE_WATER: 5, SPRITE_SAND2: 2},
+        SOUTH: {SPRITE_WATER: 5, SPRITE_SAND2: 2},
+        EAST: {SPRITE_WATER: 5, SPRITE_SAND2: 2},
+        WEST: {SPRITE_WATER: 5, SPRITE_SAND2: 2},
+        "TOTAL": 35
+    },
+    SPRITE_HUT: {
+        NORTH: {SPRITE_GRASS1: 1, SPRITE_SAND1: 2, SPRITE_WINDMILL: 2, },
+        SOUTH: {SPRITE_GRASS1: 1, SPRITE_SAND1: 3, SPRITE_SHOP: 2},
+        EAST: {SPRITE_SAND1: 1, SPRITE_HUT: 5, SPRITE_GRASS1: 3},
+        WEST: {SPRITE_SAND1: 1, SPRITE_HUT: 3, SPRITE_GRASS1: 2},
+        "TOTAL": 14
+    },
+    SPRITE_SHOP: {
+        NORTH: {SPRITE_GRASS2: 2, SPRITE_SAND2: 2, SPRITE_HUT: 1},
+        SOUTH: {SPRITE_GRASS2: 2, SPRITE_SAND2: 2, SPRITE_SHOP: 1},
+        EAST: {SPRITE_SHOP: 1, SPRITE_HUT: 2, SPRITE_GRASS1: 1},
+        WEST: {SPRITE_SHOP: 1, SPRITE_GRASS1: 5},
+        "TOTAL": 12
+    },
+    SPRITE_WINDMILL: {
+        NORTH: {SPRITE_GRASS2: 2, SPRITE_SAND2: 2, SPRITE_GRASS1: 2},
+        SOUTH: {SPRITE_HUT: 1, SPRITE_GRASS2: 2, SPRITE_SAND2: 2, SPRITE_GRASS1: 3},
+        EAST: {SPRITE_GRASS1: 3, SPRITE_WINDMILL: 4, SPRITE_ROUND: 4},
+        WEST: {SPRITE_GRASS1: 3, SPRITE_WINDMILL: 4, SPRITE_ROUND: 4},
+        "TOTAL": 24
+    },
+    SPRITE_POINTY: {
+        NORTH: {SPRITE_GRASS1: 3, SPRITE_GRASS2: 3, SPRITE_ROUND: 1},
+        SOUTH: {SPRITE_GRASS1: 4, SPRITE_SAND1: 2, SPRITE_CONE: 1},
+        EAST: {SPRITE_WINDMILL: 1, SPRITE_POINTY:2, SPRITE_GRASS2: 2},
+        WEST: {SPRITE_WINDMILL: 1, SPRITE_POINTY:2, SPRITE_GRASS2: 2},
+        "TOTAL": 19
+    },
+    SPRITE_ROUND: {
+        NORTH: {SPRITE_GRASS1: 5, SPRITE_POINTY: 1},
+        SOUTH: {SPRITE_GRASS2: 5, SPRITE_POINTY: 1},
+        WEST: {SPRITE_WINDMILL: 2, SPRITE_ROUND: 2},
+        EAST: {SPRITE_WINDMILL: 2, SPRITE_ROUND: 2},
+        "TOTAL": 13
+    },
+    SPRITE_CONE: {
+        NORTH: {SPRITE_POINTY: 2, SPRITE_CONE: 3, SPRITE_GRASS1: 4},
+        SOUTH: {SPRITE_SAND1: 2, SPRITE_CONE: 3, SPRITE_GRASS2: 4},
+        EAST: {SPRITE_POINTY: 2, SPRITE_CONE: 3, SPRITE_GRASS1: 4},
+        WEST: {SPRITE_POINTY: 2, SPRITE_CONE: 3, SPRITE_GRASS1: 4},
+        "TOTAL": 13
+    },
+}
+
+tile_loc = {
+    SPRITE_GRASS1: './assets/outputs/Grass/grass1.png',
+    SPRITE_GRASS2: './assets/outputs/Grass/grass2.png',
+    SPRITE_SAND1: './assets/outputs/Grass/sand1.png',
+    SPRITE_SAND2: './assets/outputs/Grass/sand2.png',
+    SPRITE_WATER: './assets/outputs/Grass/water1.png',
+    SPRITE_HUT: './assets/outputs/Resources/hut.png',
+    SPRITE_SHOP: './assets/outputs/Resources/shop.png',
+    SPRITE_WINDMILL: './assets/outputs/Resources/windmill.png',
+    SPRITE_CONE: './assets/outputs/Trees/cone_tree.png',
+    SPRITE_ROUND: './assets/outputs/Trees/round_tree.png',
+    SPRITE_POINTY: './assets/outputs/Trees/pointy_tree.png',
+}
