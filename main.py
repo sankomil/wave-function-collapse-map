@@ -3,35 +3,15 @@ from classes.grid import Grid
 
 if __name__ == '__main__':
     test = Grid()
-    test.wfc()
-    for x in range(test.width):
-        print("")
-        for y in range(test.height):
-            print(test.grid[x][y].entropy, end=" ")
-    
-    test.wfc()
+    result = test.wfc()
 
-    print("\n")
-    for x in range(test.width):
-        print("")
-        for y in range(test.height):
-            print(test.grid[x][y].entropy, end=" ")
+    while result != 0:
 
-    test.wfc()
+        for x in range(test.width):
+            print("")
+            for y in range(test.height):
+                print(test.grid[x][y].entropy, "|", end=" ")
+        print("\n")
+        
+        result = test.wfc()
 
-    print("\n")
-    for x in range(test.width):
-        print("")
-        for y in range(test.height):
-            print(test.grid[x][y].entropy, end=" ")
-
-    
-    test.wfc()
-
-    print("\n")
-    for x in range(test.width):
-        print("")
-        for y in range(test.height):
-            print(test.grid[x][y].entropy, end=" ")
-    
-    print("\n")
