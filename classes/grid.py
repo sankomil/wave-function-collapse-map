@@ -86,5 +86,7 @@ class Grid:
             for y in range(self.height):
                 if self.grid[x][y].entropy != 0:
                     heappush(self.entropy, (self.grid[x][y].entropy, self.grid[x][y]))
+        
+        return 1
     
 
