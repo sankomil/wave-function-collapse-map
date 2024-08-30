@@ -1,6 +1,6 @@
 # Wave function collapse maps
 
-![image]('./assets/example-map-v1.gif')
+![image](./assets/example-map-v1.gif)
 
 ## Assets and inspiration
 
