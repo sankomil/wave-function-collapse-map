@@ -28,7 +28,7 @@ class Sprite:
             
             for p in self.pos.copy():
                 for np in tile_neighbours[p][-direction].keys():
-                    if np not in neigh and np not in checked and np in self.pos:
+                    if np not in neigh and np not in checked and np in self.pos and len(self.pos) > 1:
                         self.pos.remove(np)
                         checked.append(np)
                         reduced = True
